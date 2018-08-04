@@ -23,9 +23,9 @@
                     <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'>
                         <img :src='item.author.avatar_url' :title='item.author.loginname'>
                     </router-link>
-                    <router-link :to='{name: "ArticleRoute",params:{id:item.id}}'>
-                        <p class='userTitle'>{{item.title}}</p>
-                    </router-link>
+                    
+                    <p class='userTitle' @click='linkTo(item.id)'>{{item.title}}</p>
+                    
                 </div>
             </template>
         </div>
@@ -71,6 +71,9 @@ export default {
             }).catch((res) => {
                 console.log('UserCom.vue: ', res);
             });
+        },
+        linkTo(id){
+            this.$router.push({name: "ArticleRoute",params:{id:id}})
         }
     },
     beforeRouteUpdate(to, from, next) {
