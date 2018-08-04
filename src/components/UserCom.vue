@@ -55,29 +55,26 @@ export default {
         };
     },
     created() {
-        this.$http({
-            url: `https://cnodejs.org/api/v1${this.$route.path}`,
-            method: 'get',
-        }).then((res) => {
-            this.userInfo = res.data.data;
-        }).catch((res) => {
-            console.log('UserCom.vue: ', res);
-        });
+        this.getInfo(this.$route.path)
     },
     methods: {
         dealCommentTime(time) {
             return String(time).match(/.{10}/)[0].replace(/.{2}/, '').replace(/[T]/, ' ');
         },
+        getInfo(path){
+            this.$http({
+                url: `https://cnodejs.org/api/v1${path}`,
+                method: 'get',
+            }).then((res) => {
+                this.userInfo = res.data.data;
+                console.log(1)
+            }).catch((res) => {
+                console.log('UserCom.vue: ', res);
+            });
+        }
     },
     beforeRouteUpdate(to, from, next) {
-        this.$http({
-            url: `https://cnodejs.org/api/v1${to.path}`,
-            method: 'get',
-        }).then((res) => {
-            this.userInfo = res.data.data;
-        }).catch((res) => {
-            console.log('UserCom.vue: ', res);
-        });
+        this.getInfo(to.path)
         next();
     },
     watch: {

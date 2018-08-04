@@ -4,7 +4,7 @@
             <img src='../assets/cnodejs.svg' title='cnodejs.svg'>
         </router-link>
         <el-button type='text' @click='dialogVisible=true'>关于</el-button>
-        <el-dialog title='Vue.js重写CnodeJS社区' v-model='dialogVisible' size='tiny'>
+        <el-dialog title='Vue.js重写CnodeJS社区' v-model='dialogVisible'>
             <div class='dialogDiv'>
                 <span>
                     <strong>作者: &nbsp;&nbsp;</strong>

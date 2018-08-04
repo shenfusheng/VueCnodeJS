@@ -60,7 +60,7 @@ export default {
             }
         },
     },
-    beforeCreate() {
+    created() {
         this.$http({
             url: `https://cnodejs.org/api/v1${this.$route.path}`,
             method: 'get',
@@ -71,6 +71,7 @@ export default {
             } else {
                 this.article = 'Sorry, Something wrong happened when getting the remote data';
             }
+            console.log(this.$route.path)
         }).catch((res) => {
             console.log('ArticleCom.vue: ', res);
         });
@@ -168,5 +169,8 @@ export default {
 
 .secDiv .thumbsClass {
     float: right;
+}
+code{
+    white-space: normal;
 }
 </style>
